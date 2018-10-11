@@ -13,7 +13,8 @@ from (
 		ser.northing, 
 		typ.name type_name, 
 		stat.name status_name,
-		dt_times.opening_times
+		dt_times.opening_times,
+		ser.modifiedtime last_change_timestamp
 	from pathwaysdos.services ser	
 	inner join pathwaysdos.servicetypes typ on ser.typeid = typ.id 
 	inner join pathwaysdos.servicestatuses stat on ser.statusid = stat.id
