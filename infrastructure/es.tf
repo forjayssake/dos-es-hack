@@ -31,7 +31,7 @@ resource "aws_elasticsearch_domain" "es" {
       "Resource": "arn:aws:es:${var.aws_region}:${data.aws_caller_identity.current.account_id}:domain/${var.domain}/*",
       "Condition": {
         "IpAddress": {
-          "aws:SourceIp": "${var.safe_ip_address}"
+          "aws:SourceIp": ["${join("\",\"", var.safe_ip_addresses)}"]
         }
       }
     }
