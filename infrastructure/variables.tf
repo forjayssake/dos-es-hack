@@ -15,5 +15,6 @@ variable "safe_ip_addresses" {
 }
 
 variable "aws_profile" {
-  default = "mcbh"
+  default = "default"
+  description = "If (like the author) you have multiple AWS accounts you will want to override this to correspond to the name used in your ~/.aws/credentials profiles"
 }
