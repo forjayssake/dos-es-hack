@@ -53,7 +53,7 @@ try:
   servicesStr = []
   j=0
   for i in range(len(services)):
-	  servicesStr.append(''.join(services[i]))
+	  servicesStr.append(services[i][0])
 	  j = j + 1
 	  if j == 40000:
 		  j=0
