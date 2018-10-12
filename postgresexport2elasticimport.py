@@ -36,14 +36,8 @@ try:
   conn = psycopg2.connect(host="localhost",database="pathwaysdos_dev", user="postgres", password="postgres")
 
   cur = conn.cursor()
-  #print('PostgresSQL database version:')
-  #cur.execute('SELECT version()')
-
-  #db_version = cur.fetchone()
-  #print(db_version)
 
   print("Creating or replacing view for extract")
-  #psqlFile = open("-.sql")
   psqlFile = codecs.open("-.sql", "r", "utf-8")
   psql = psqlFile.read()
   print(psql);
@@ -55,15 +49,29 @@ try:
   services = cur.fetchall()
   print("exported services count:"+str(len(services)))
 
+  packagedServicesStr = []
   servicesStr = []
+  j=0
   for i in range(len(services)):
-      servicesStr.append(''.join(services[i]))
+	  servicesStr.append(''.join(services[i]))
+	  j = j + 1
+	  if j == 40000:
+		  j=0
+		  packagedServicesStr.append(servicesStr)
+		  servicesStr = [];
 
+  packagedServicesStr.append(servicesStr);
+
+  print("Clear Elasticsearch indices")
+  es=elasticsearch.Elasticsearch([{'host': 'localhost', 'port': 9200}])
+  es.indices.delete(index='service2', ignore=[400, 404])
 
   print("Import into Elasticsearch")
-  es=elasticsearch.Elasticsearch([{'host': 'localhost', 'port': 9200}])
-  res=es.bulk(body=servicesStr, ignore=400, index="services", doc_type="service",request_timeout=30)
-  print(json.dumps(res, indent=3, separators=(',', ': ')))
+  for i in range(len(packagedServicesStr)):
+	print("Import service pack: "+str(1+i)+" of "+str(len(packagedServicesStr)))
+  	es=elasticsearch.Elasticsearch([{'host': 'localhost', 'port': 9200}])
+  	res=es.bulk(body=packagedServicesStr[i], ignore=400, index="services", doc_type="service",request_timeout=30)
+  	#print(json.dumps(res, indent=3, separators=(',', ': ')))
 
 except (Exception, psycopg2.DatabaseError) as error:
     print(error)
