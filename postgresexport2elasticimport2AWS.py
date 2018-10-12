@@ -56,13 +56,12 @@ try:
   servicesStr = []
   j=0
   for i in range(len(services)):
-	  servicesStr.append(''.join(services[i]))
+	  servicesStr.append(services[i][0])
 	  j = j + 1
 	  if j == 10000:
 		  j=0
 		  packagedServicesStr.append(servicesStr)
 		  servicesStr = [];
-
   packagedServicesStr.append(servicesStr);
 
   print("Clear Elasticsearch indices")
