@@ -1,0 +1,21 @@
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: small, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+components:
+- type: Label
+  properties: {}
+  name: day_name
+  layout_properties: {grid_position: 'QOVZGM,MOJQIJ', full_width_row: false}
+  data_bindings:
+  - {property: text, code: 'self.item[''day'']'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: hours
+  layout_properties: {grid_position: 'QOVZGM,MYVZXO', full_width_row: false}
+  data_bindings:
+  - {property: text, code: 'self.item[''periods'']'}
+item_type: {table_id: null}

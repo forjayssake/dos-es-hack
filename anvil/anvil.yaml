@@ -1,0 +1,7 @@
+allow_embedding: false
+package_name: DoSElasticSearch
+name: DoS Elastic Search
+startup_form: Search
+renamed: true
+runtime_options: {version: 1, server_version: python2-sandbox}
+services: []
