@@ -1,0 +1,98 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: ColumnPanel
+  properties: {role: card, col_widths: '{"HPADJC":30,"MPGCXP":45,"HGRYZW":15}'}
+  name: card_1
+  layout_properties: {grid_position: 'YJYNMM,MBXXID'}
+  components:
+  - type: Label
+    properties: {role: headline, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: service_name
+    layout_properties: {grid_position: 'XBYPOY,MPGCXP', column: null}
+    data_bindings:
+    - {property: text, code: 'self.item[''_source''][''service_name'']'}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Details, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: show_details
+    layout_properties: {grid_position: 'XBYPOY,HGRYZW'}
+    event_bindings: {click: show_details_click}
+  - type: FlowPanel
+    properties: {}
+    name: flow_panel_1
+    layout_properties: {grid_position: 'JHFZRY,HPADJC'}
+    components:
+    - type: ColumnPanel
+      properties: {col_widths: '{"SBRQVR":10,"QONYSH":15,"REVIBK":35}'}
+      name: column_panel_2
+      layout_properties: {grid_position: 'TJHUVS,TATMEV', width: 695}
+      components:
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: ODS code, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_2
+        layout_properties: {grid_position: 'WZDWRR,SBRQVR OVWCII,NCYEYI'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Service type, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_3
+        layout_properties: {grid_position: 'WZDWRR,SBRQVR SMCWKL,VCSRCX'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Postcode, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_4
+        layout_properties: {grid_position: 'WZDWRR,SBRQVR UFVKHV,BMBLYU'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: ods_code
+        layout_properties: {column: null, grid_position: 'WZDWRR,QONYSH RBOCJF,WKZSNS'}
+        data_bindings:
+        - {property: text, code: 'self.item[''_source''][''odscode'']'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: service_type
+        layout_properties: {grid_position: 'WZDWRR,QONYSH CERIUI,AICHXP'}
+        data_bindings:
+        - {property: text, code: 'self.item[''_source''][''type_name'']'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: postcode
+        layout_properties: {grid_position: 'WZDWRR,QONYSH BBQMVX,ZISXKN'}
+        data_bindings:
+        - {property: text, code: 'self.item[''_source''][''postcode'']'}
+      - type: Label
+        properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: 'Opening times:', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_1
+        layout_properties: {grid_position: 'WZDWRR,REVIBK MXWKXM,HQMCLX'}
+      - type: RepeatingPanel
+        properties: {item_template: ItemTemplate1}
+        name: repeating_panel_1
+        layout_properties: {grid_position: 'WZDWRR,REVIBK QHTDDW,YVPVVY'}
+        data_bindings:
+        - {property: items, code: 'self.item[''_source''][''opening_times'']'}
+item_type: {table_id: null}

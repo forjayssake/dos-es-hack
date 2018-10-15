@@ -1,0 +1,48 @@
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: 'What
+        do you need?', border: '', enabled: true, foreground: '', visible: true, text: '',
+      font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false}
+    name: search_box
+    layout_properties: {grid_position: 'MOXISP,RPJXZS'}
+    data_bindings: []
+    event_bindings: {pressed_enter: search_box_pressed_enter}
+  - type: Button
+    properties: {role: secondary-color, align: left, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Search, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: search_button
+    layout_properties: {grid_position: 'MOXISP,IHPZVB', x: 0, y: 0, width: 93.4}
+    event_bindings: {click: search_button_click}
+  - type: Label
+    properties: {}
+    name: lbl_results
+    layout_properties: {grid_position: 'XCHQGK,HUKJCI'}
+    data_bindings: []
+  - type: RepeatingPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
+      visible: true, spacing_above: small, spacing_below: small, item_template: searchResultTemplate,
+      background: ''}
+    name: results_panel
+    layout_properties: {grid_position: 'XQIFFW,JFEMEH', full_width_row: false}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: DoS Elasticsearch, font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: banner_label
+  layout_properties: {slot: title}
